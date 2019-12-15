@@ -93,3 +93,24 @@ function arabic_roman (num) {
 }
 
 console.log(arabic_roman (1246))
+
+// Roman Validator
+
+function roman_validate(str) {
+    let valid = true;
+    if ((str.includes("IIII")) || (str.includes("XXXX")) || (str.includes("CCCC"))) {valid = false}
+    
+    str = str.split("").reverse();
+    
+    for (let [i, letter] of str.entries()) {
+      console.log(i, letter, str[i+2])
+      if (((letter == "V") || (letter == "X")) && ("I" == str[i+2])) {valid = false};
+      if (((letter == "L") || (letter == "C")) && ("X" == str[i+2])) {valid = false};
+      
+    }
+    
+    return valid;
+    
+  }
+  
+  console.log(roman_validate("MCCXXLIV"))
