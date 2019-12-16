@@ -1,5 +1,5 @@
 // define the four possible suits
-const suit = [{spades: "S"}, {hearts: "H"}, {clubs: "C"}, {diamonds: "D"}];
+const suit = ["S", "H", "C", "D"];
 // define all possible card values
 const values = [2, 3, 4, 5, 6, 7, 8, 9, "T", "J", "Q", "K", "A"];
 // create an empty pack
@@ -53,7 +53,7 @@ function showdown () {
     let player_one = new Player(prompt("Please enter first player", "San Gennaro"), hand_one),
         player_two = new Player(prompt("Please enter second player", "Cheesus"), hand_two);
 
-        
+
 
 
   }
