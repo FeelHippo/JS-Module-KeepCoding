@@ -20,6 +20,19 @@ class Player {
         this.name = name;
         this.hand = hand;
     }
+    straight_flush_order() {
+        let result = 0;
+        let ordered = this.hand.map(x => Object.values(x)[1]).sort();
+        if (values.join("").includes(ordered.join(""))) {result = ordered.reduce((acc, curr) => acc + values.indexOf(curr))}
+        return result;
+        
+      }
+      straight_flush_suit() {
+        let all_equal = false;
+        let first = Object.values(this.hand[0]);
+        if (this.hand.every(x => first[0] == Object.values(x)[0])) {all_equal = true}
+        return all_equal;
+      }
 }
 
 // let's re-shuffle the pack
@@ -33,6 +46,25 @@ function shuffle() {
       }
   return pack;
 }
+
+function straight_flush(p1, p2) {
+    
+    let p1_flush = ((!p1.straight_flush_order() == 0) && (p1.straight_flush_suit())) ? p1.straight_flush_order() : false;
+    let p2_flush = ((!p2.straight_flush_order() == 0) && (p2.straight_flush_suit())) ? p2.straight_flush_order() : false;
+    let game_over = false;
+    console.log(p1_flush, p2_flush)
+    if ((p1_flush != false) && (p2_flush != false)) {
+      let winner = (p1_flush > p2_flush) ? p1.name : p2.name;
+      console.log(`${winner} wins with a Straight Flush!`)
+      game_over = true;
+    }
+    else if ((p1_flush != false) || (p2_flush != false))){
+      let winner = (p1_flush) ? p1.name : p2.name;
+      console.log(`${winner} wins with a Straight Flush!`)
+      game_over = true;
+    }
+  return game_over;
+  }
 
 
 function showdown () {
@@ -53,11 +85,12 @@ function showdown () {
     let player_one = new Player(prompt("Please enter first player", "San Gennaro"), hand_one),
         player_two = new Player(prompt("Please enter second player", "Cheesus"), hand_two);
 
-
+    straight_flush(player_one, player_two);
 
 
   }
 
+  
 
 
 
