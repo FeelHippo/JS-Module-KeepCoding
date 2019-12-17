@@ -26,12 +26,20 @@ class Player {
         if (values.join("").includes(ordered.join(""))) {result = ordered.reduce((acc, curr) => acc + values.indexOf(curr))}
         return result;
         
-      }
-      straight_flush_suit() {
-        let all_equal = false;
-        let first = Object.values(this.hand[0]);
-        if (this.hand.every(x => first[0] == Object.values(x)[0])) {all_equal = true}
-        return all_equal;
+    }
+    straight_flush_suit() {
+    let all_equal = false;
+    let first = Object.values(this.hand[0]);
+    if (this.hand.every(x => first[0] == Object.values(x)[0])) {all_equal = true}
+    return all_equal;
+    }
+    poker() {
+        let poker = 0,
+            ordered = this.hand.map(x => Object.values(x)[1]).sort(),
+            first_four = this.hand.splice(0, 4),
+            last_four = this.hand.splice(1, 4);
+            poker += (first_four.every(x => first_four[0] == x)) ? first_four.reduce((acc, curr) => acc + curr) : (last_four.every(y => last_four[0] == y)) ? last_four.reduce((acc, curr) => acc + curr) : 0;
+        return poker;
       }
 }
 
@@ -52,13 +60,13 @@ function straight_flush(p1, p2) {
     let p1_flush = ((!p1.straight_flush_order() == 0) && (p1.straight_flush_suit())) ? p1.straight_flush_order() : false;
     let p2_flush = ((!p2.straight_flush_order() == 0) && (p2.straight_flush_suit())) ? p2.straight_flush_order() : false;
     let game_over = false;
-    console.log(p1_flush, p2_flush)
+    
     if ((p1_flush != false) && (p2_flush != false)) {
       let winner = (p1_flush > p2_flush) ? p1.name : p2.name;
       console.log(`${winner} wins with a Straight Flush!`)
       game_over = true;
     }
-    else if ((p1_flush != false) || (p2_flush != false))){
+    else if ((p1_flush != false) || (p2_flush != false)){
       let winner = (p1_flush) ? p1.name : p2.name;
       console.log(`${winner} wins with a Straight Flush!`)
       game_over = true;
@@ -66,6 +74,22 @@ function straight_flush(p1, p2) {
   return game_over;
   }
 
+  function poker(p1, p2) {
+    let p1_poker = p1.poker();
+    let p2_poker = p2.poker();
+    let game_over = false;
+    if ((p1_poker != 0) && (p2_poker != 0)) {
+      let winner = (p1_poker > p2_poker) ? p1.name : p2.name;
+      console.log(`${winner} wins with a Poker!`)
+      game_over = true;
+    }
+    else if ((p1_poker != 0) || (p2_poker != 0)){
+        let winner = (p1_poker != 0) ? p1.name : p2.name;
+        console.log(`${winner} wins with a Poker!`)
+        game_over = true;
+      }
+    return game_over;
+  }
 
 function showdown () {
 
@@ -86,6 +110,7 @@ function showdown () {
         player_two = new Player(prompt("Please enter second player", "Cheesus"), hand_two);
 
     straight_flush(player_one, player_two);
+    poker(player_one, player_two);
 
 
   }
