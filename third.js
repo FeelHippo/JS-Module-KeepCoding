@@ -41,6 +41,17 @@ class Player {
             poker += (first_four.every(x => first_four[0] == x)) ? first_four.reduce((acc, curr) => acc + curr) : (last_four.every(y => last_four[0] == y)) ? last_four.reduce((acc, curr) => acc + curr) : 0;
         return poker;
       }
+    house() {
+      let ordered = this.hand.map(x => Object.values(x)[1]).sort();
+      
+      let triplet = (ordered.slice(0, 3).every(x => ordered[0] == x)) ? ordered.slice(0, 3).reduce((acc, curr) => acc + curr) : (ordered.slice(2, 3).every(y => ordered[-1] == y)) ? ordered.slice(2, 3).reduce((acc, curr) => acc + curr) : 0;
+      let tuple = (ordered.slice(0, 2).every(a => ordered[0] == a)) ? ordered.slice(0, 2).reduce((acc, curr) => acc + curr) : (ordered.slice(3, 2).every(b => ordered[-1] == b)) ? ordered.slice(3, 2).reduce((acc, curr) => acc + curr) : 0;
+      
+      let result_house = ((triplet !=0) && (tuple !=0)) ? triplet + tuple : 0;
+      
+      return result_house;
+      
+    }
 }
 
 // let's re-shuffle the pack
@@ -91,6 +102,25 @@ function straight_flush(p1, p2) {
     return game_over;
   }
 
+  function full_house(p1, p2) {
+    let p1_house = p1.house();
+    let p2_house = p2.house();
+    let game_over = false;
+    
+    if ((p1_house != 0) && (p2_house != 0)) {
+      let winner = (p1_house > p2_house) ? p1.name : p2.name;
+      console.log(`${winner} wins with a Full House!`)
+      game_over = true;
+    }
+    else if ((p1_house != 0) || (p2_house != 0)){
+        let winner = (p1_house != 0) ? p1.name : p2.name;
+        console.log(`${winner} wins with a Full House!`)
+        game_over = true;
+      }
+    return game_over;
+    
+  }
+
 function showdown () {
 
     // create two separate and unique hands    
@@ -138,12 +168,3 @@ Si las dos manos tienen escalera entonces gana la que tiene la carta más alta.
 
 * Flush (Color): La mano tiene 5 cartas con la misma cara. 
 Si ambas manos tienen escalera entonces gana el que tenga la carta más alta. 
-
-* Full House (Full): La mano tiene un trío y una pareja. 
-En caso de tener ambas manos full entonces gana el que tenga el trío más alto. 
-
-* Four of a Kind (Poker): 4 cartas con el mismo valor. 
-En caso de tener ambas manos poker gana el que tenga el valor más alto.
-
-* Straight flush (Escalera de Color): 5 cartas de la misma cara pero con valores consecutivos. 
-En caso de tener escalera las dos manos entonces gana el que tenga el valor más alto.
