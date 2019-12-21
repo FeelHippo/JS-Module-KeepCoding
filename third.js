@@ -291,15 +291,16 @@ function showdown () {
 
     let player_one = new Player(prompt("Please enter first player", "San Gennaro"), hand_one),
         player_two = new Player(prompt("Please enter second player", "Cheesus"), hand_two);
-
-        straight_flush(player_one, player_two);
-        poker(player_one, player_two);
-        full_house(player_one, player_two);
-        flush(player_one, player_two);
-        straight(player_one, player_two);
-        three(player_one, player_two);
-        two_pairs(player_one, player_two);
-        pair(player_one, player_two);
-        highest(player_one, player_two);
+    
+    let new_game = "no",
+        play_array = [straight_flush, poker, full_house, flush, straight, three, two_pairs, pair, highest];
+        
+    for (let i = 0; i < play_array.length; i++) {
+      if (play_array[i](player_one, player_two)) {
+        new_game = prompt("Would you like to play again yes/no", "yes");
+        break;
+      }
+    }    
+    if (new_game == "yes") {return showdown ()}
   }
 
