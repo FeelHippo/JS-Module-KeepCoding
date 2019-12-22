@@ -51,7 +51,7 @@ const  priority = [
   // Arabic to Roman
 
   
-function arabic_roman (num) {
+  function arabic_roman (num) {
     num = num.toString().split("");
     let roman = [];
     
@@ -72,21 +72,19 @@ function arabic_roman (num) {
     ? single_digit[0].roman.repeat(Number(roman[0])) 
     : single_digit[1].roman + single_digit[0].roman.repeat(Number(roman[0])%5);
 
-  
-    oman[1] = (roman[1]==4) 
+    
+    roman[1] = (roman[1]==4) 
     ? priority[2].roman : (roman[1]==9) 
     ? priority[3].roman : (roman[1]==5) 
     ? single_digit[3].roman : (roman[1]<5) 
     ? single_digit[2].roman.repeat(Number(roman[1]))
     : single_digit[3].roman + single_digit[2].roman.repeat(Number(roman[1])%5);
-  
+    
     roman[2] = (roman[2]==5) 
     ? single_digit[5].roman : (roman[2]<5) 
     ? single_digit[4].roman.repeat(parseInt(roman[2])) 
     : single_digit[5].roman + single_digit[4].roman.repeat(parseInt(roman[2])%5);
- 
-    roman[3] = single_digit[6].roman.repeat(parseInt(roman[3]));
-  
+    roman[3] = single_digit[5].roman.repeat(parseInt(roman[3]));
   
     return roman.reverse().join("");
   
