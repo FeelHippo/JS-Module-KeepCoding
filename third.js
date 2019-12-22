@@ -318,6 +318,8 @@ function showdown () {
       }
     }    
     if (new_game == "yes") {return showdown ()}
+
+    return new_game
   }
 
 console.log(showdown())
