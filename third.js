@@ -238,7 +238,7 @@ function straight_flush(p1, p2) {
     let p2_two_pairs = p2.two_pairs();
     let game_over = false;
     if ((p1_two_pairs == []) && (p1_two_pairs == [])) {return game_over}
-    if ((p1_two_pairs[0] != p2_two_pairs[0]) && (p1_two_pairs[1] != p2_two_pairs[1])) {
+    else if ((p1_two_pairs[0] != p2_two_pairs[0]) && (p1_two_pairs[1] != p2_two_pairs[1])) {
       let winner = (p1_two_pairs.reduce((acc, curr) => acc+curr) > p2_two_pairs.reduce((acc, curr) => acc+curr)) ? p1.name : p2.name;
       console.log(`${winner} wins with a Two Pairs!`);
       window.alert(winner + " wins with a Two Pairs!");
