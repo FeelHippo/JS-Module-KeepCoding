@@ -115,12 +115,14 @@ function straight_flush(p1, p2) {
     
     if ((p1_flush != false) && (p2_flush != false)) {
       let winner = (p1_flush > p2_flush) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Straight Flush!`)
+      console.log(`${winner} wins with a Straight Flush!`);
+      window.alert(winner + " wins with a Straight Flush!");
       game_over = true;
     }
     else if ((p1_flush != false) || (p2_flush != false)){
       let winner = (p1_flush) ? p1.name : p2.name;
       console.log(`${winner} wins with a Straight Flush!`)
+      window.alert(winner + " wins with a Straight Flush!");
       game_over = true;
     }
   return game_over;
@@ -128,18 +130,19 @@ function straight_flush(p1, p2) {
 
   function poker(p1, p2) {
   
-  
     let p1_poker = p1.poker();
     let p2_poker = p2.poker();
     let game_over = false;
     if ((p1_poker != 0) && (p2_poker != 0)) {
       let winner = (p1_poker > p2_poker) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Poker!`)
+      console.log(`${winner} wins with a Poker!`);
+      window.alert(winner + " wins with a Poker!");
       game_over = true;
     }
     else if ((p1_poker != 0) || (p2_poker != 0)){
         let winner = (p1_poker != 0) ? p1.name : p2.name;
-        console.log(`${winner} wins with a Poker!`)
+        console.log(`${winner} wins with a Poker!`);
+        window.alert(winner + " wins with a Poker!");
         game_over = true;
       }
     return game_over;
@@ -153,12 +156,14 @@ function straight_flush(p1, p2) {
     
     if ((p1_house != 0) && (p2_house != 0)) {
       let winner = (p1_house > p2_house) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Full House!`)
+      console.log(`${winner} wins with a Full House!`);
+      window.alert(winner + " wins with a Full House!");
       game_over = true;
     }
     else if ((p1_house != 0) || (p2_house != 0)){
         let winner = (p1_house != 0) ? p1.name : p2.name;
-        console.log(`${winner} wins with a Full House!`)
+        console.log(`${winner} wins with a Full House!`);
+        window.alert(winner + " wins with a Full House!");
         game_over = true;
       }
     
@@ -172,12 +177,14 @@ function straight_flush(p1, p2) {
     
     if ((p1_flush != 0) && (p2_flush != 0)) {
       let winner = (p1_flush > p2_flush) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Flush!`)
+      console.log(`${winner} wins with a Flush!`);
+      window.alert(winner + " wins with a Flush!");
       game_over = true;
     }
     else if ((p1_flush != 0) || (p2_flush != 0)){
         let winner = (p1_flush != 0) ? p1.name : p2.name;
-        console.log(`${winner} wins with a Flush!`)
+        console.log(`${winner} wins with a Flush!`);
+        window.alert(winner + " wins with a Flush!");
         game_over = true;
       }
     
@@ -191,12 +198,14 @@ function straight_flush(p1, p2) {
     
     if ((p1_straight != 0) && (p2_straight != 0)) {
       let winner = (p1_straight > p2_straight) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Straight Hand!`)
+      console.log(`${winner} wins with a Straight Hand!`);
+      window.alert(winner + " wins with a Straight Hand!");
       game_over = true;
     }
     else if ((p1_straight != 0) || (p2_straight != 0)){
         let winner = (p1_straight != 0) ? p1.name : p2.name;
-        console.log(`${winner} wins with a Straight Hand!`)
+        console.log(`${winner} wins with a Straight Hand!`);
+        window.alert(winner + " wins with a Straight Hand!");
         game_over = true;
       }
     
@@ -210,12 +219,14 @@ function straight_flush(p1, p2) {
     
     if ((p1_three != 0) && (p2_three != 0)) {
       let winner = (p1_three > p2_three) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Three of a Kind!`)
+      console.log(`${winner} wins with a Three of a Kind!`);
+      window.alert(winner + " wins with a Three of a Kind!");
       game_over = true;
     }
     else if ((p1_three != 0) || (p2_three != 0)){
         let winner = (p1_three != 0) ? p1.name : p2.name;
-        console.log(`${winner} wins with a Three of a Kind!`)
+        console.log(`${winner} wins with a Three of a Kind!`);
+        window.alert(winner + " wins with a Three of a Kind!");
         game_over = true;
       }
     
@@ -229,19 +240,22 @@ function straight_flush(p1, p2) {
     if ((p1_two_pairs == []) && (p1_two_pairs == [])) {return game_over}
     if ((p1_two_pairs[0] != p2_two_pairs[0]) && (p1_two_pairs[1] != p2_two_pairs[1])) {
       let winner = (p1_two_pairs.reduce((acc, curr) => acc+curr) > p2_two_pairs.reduce((acc, curr) => acc+curr)) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Two Pairs!`)
+      console.log(`${winner} wins with a Two Pairs!`);
+      window.alert(winner + " wins with a Two Pairs!");
       game_over = true;
     }
     else if ((p1_two_pairs[0] == p2_two_pairs[0]) && (p1_two_pairs[1] == p2_two_pairs[1])){
       let remaining_p1 = p1.hand.map(x => Object.values(x)[1]).sort().filter(z => (z != p1_two_pairs[0]) && (z != p1_two_pairs[1]));
       let remaining_p2 = p2.hand.map(x => Object.values(x)[1]).sort().filter(z => (z != p1_two_pairs[0]) && (z != p1_two_pairs[1]));
       let winner = (remaining_p1 > remaining_p2) ? p1.name : p2.name;
-        console.log(`${winner} wins with a Two pairs!`)
+        console.log(`${winner} wins with a Two pairs!`);
+        window.alert(winner + " wins with a Two Pairs!");
         game_over = true;
       }
     else if (p1_two_pairs[0] == p2_two_pairs[0]) {
       let winner = (p1_two_pairs[0] > p2_two_pairs[0]) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Two Pairs!`)
+      console.log(`${winner} wins with a Two Pairs!`);
+      window.alert(winner + " wins with a Two Pairs!");
       game_over = true;}
     
     
@@ -255,7 +269,8 @@ function straight_flush(p1, p2) {
     
     if ((p1_pair != 0) && (p2_pair != 0)) {
       let winner = (p1_pair > p2_pair) ? p1.name : p2.name;
-      console.log(`${winner} wins with a Pair!`)
+      console.log(`${winner} wins with a Pair!`);
+      window.alert(winner + " wins with a Pair!");
       game_over = true;
     }
     
@@ -268,7 +283,8 @@ function straight_flush(p1, p2) {
     let game_over = false;
     
     let winner = (p1_highest > p2_highest) ? p1.name : p2.name;
-    console.log(`${winner} wins with a Highest!`)
+    console.log(`${winner} wins with a Highest!`);
+    window.alert(winner + " wins with a Highest!");
     game_over = true;
     
     return game_over;
@@ -304,3 +320,4 @@ function showdown () {
     if (new_game == "yes") {return showdown ()}
   }
 
+console.log(showdown())
