@@ -237,7 +237,7 @@ function straight_flush(p1, p2) {
     let p1_two_pairs = p1.two_pairs();
     let p2_two_pairs = p2.two_pairs();
     let game_over = false;
-    if ((p1_two_pairs == []) && (p1_two_pairs == [])) {return game_over}
+    if ((p1_two_pairs == 0) && (p1_two_pairs == 0)) {return game_over}
     else if ((p1_two_pairs[0] != p2_two_pairs[0]) && (p1_two_pairs[1] != p2_two_pairs[1])) {
       let winner = (p1_two_pairs.reduce((acc, curr) => acc+curr) > p2_two_pairs.reduce((acc, curr) => acc+curr)) ? p1.name : p2.name;
       console.log(`${winner} wins with a Two Pairs!`);
@@ -283,9 +283,11 @@ function straight_flush(p1, p2) {
     let game_over = false;
     
     let winner = (p1_highest > p2_highest) ? p1.name : p2.name;
-    console.log(`${winner} wins with a Highest!`);
-    window.alert(winner + " wins with a Highest!");
-    game_over = true;
+    if (winner) {
+      console.log(`${winner} wins with a Highest!`);
+      window.alert(winner + " wins with a Highest!");
+      game_over = true;
+    }
     
     return game_over;
   };
